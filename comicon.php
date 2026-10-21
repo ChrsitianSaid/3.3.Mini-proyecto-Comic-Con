@@ -6,7 +6,6 @@ ini_set('display_startup_errors', '1'); // solicita que también se muestren los
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $total = 0;
-    $edad = "";
     $nombre = "";
     $edad = "";
 
@@ -20,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 //try catch finally
 try {
+    $nombre = htmlspecialchars($edad, ENT_QUOTES). $_POST[''] ??"";
     $edad = htmlspecialchars($edad, ENT_QUOTES). $_POST[''] ??"";
      if ($tvideojuegos){
         $total += 10;
