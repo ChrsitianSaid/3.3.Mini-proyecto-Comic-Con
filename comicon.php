@@ -44,11 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Restricción VIP para menores de 18 años
         if ($edad < 18 && $entrada === 'vip') {
-            throw new Exception(
-                "Los menores de 18 años no pueden comprar entradas VIP."
-            );
+            throw new Exception( "Los menores de 18 años no pueden comprar entradas VIP." );
         }
-        if ($edad >18 && $entrada === "menores") {
+        if ($edad >=18 && $entrada === "menores") {
             throw new Exception("Los mayores de 18 años no pueden comprar la entrada menores");
         }
 
