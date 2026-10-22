@@ -15,10 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $edad = $_POST['edad'] ?? "";
         $entrada = $_POST['entrada'] ?? "";
 
-        $tvideojuegos = $_POST['tvideojuegos'] ?? "";
-        $tcosplay = $_POST['tcosplay'] ?? "";
-        $rol = $_POST['rol'] ?? "";
+        $taller = $_POST["taller"] ??"";
 
+       /* $tvideojuegos = $_POST['tvideojuegos'] ?? "";
+        *$tcosplay = $_POST['tcosplay'] ?? "";
+        *$rol = $_POST['rol'] ?? "";
+        */
         // Validar el nombre
         if ($nombre === "") {
             throw new Exception("El nombre es obligatorio.");
@@ -67,8 +69,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 throw new Exception("Tipo de entrada no válido.");
         }
 
+        
+        
+        $taller = ['general','vip','infantil'];
+
         // Sumar los talleres seleccionados
-        if ($tvideojuegos === "si") {
+       /* if ($tvideojuegos === "si") {
             $total += 10;
         }
 
@@ -78,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($rol === "si") {
             $total += 5;
-        }
+        }*/
 
         $resultado = true;
 
@@ -93,6 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         );
     }
 }
+
 ?>
 
 <!DOCTYPE html>
