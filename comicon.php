@@ -1,6 +1,6 @@
 
 <?php
-// Muestra todos los errores durante el desarrollo.
+// Muestra todos los errores
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
@@ -48,14 +48,9 @@ function procesarInscripcion(
     }
 
     // Devolver los datos que necesita el resguardo.
-    return [
-        'precioBase' => $precioBase,
-        'talleres' => $talleresSeleccionados,
-        'total' => $total
-    ];
+    return [ 'precioBase' => $precioBase, 'talleres' => $talleresSeleccionados, 'total' => $total ];
 }
 
-// Procesar los datos solamente cuando se envía el formulario.
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         // Recoger los datos de forma segura.
@@ -63,7 +58,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $edad = $_POST['edad'] ?? '';
         $entrada = $_POST['entrada'] ?? '';
 
-        // Los checkbox no seleccionados no se reciben en POST.
         $tvideojuegos = $_POST['tvideojuegos'] ?? '';
         $tcosplay = $_POST['tcosplay'] ?? '';
         $rol = $_POST['rol'] ?? '';
@@ -128,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $taller[] = 'rol';
         }
 
-        // Calcular el precio utilizando la función correspondiente.
+        // Calcular el precio 
         $inscripcion = procesarInscripcion(
             $entrada,
             $taller,
@@ -139,16 +133,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $talleresSeleccionados = $inscripcion['talleres'];
         $total = $inscripcion['total'];
 
-        // Indicar que el procesamiento ha terminado correctamente.
         $resultado = true;
         $estado = 'correcto';
 
     } catch (Exception $e) {
-        // Guardar el mensaje para mostrarlo en la página.
         $error = $e->getMessage();
-
     } finally {
-        // Registrar la fecha y el resultado de la operación.
         error_log(
             '[' . date('Y-m-d H:i:s') . '] ' .
             'Procesamiento de Comic-Con: ' . $estado
@@ -169,25 +159,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h1>Ilerna Comic-Con</h1>
 
     <?php if ($error !== ''): ?>
-        <p class="error">
-            Error: <?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8') ?>
-        </p>
+        <p class="error"> Error: <?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8') ?></p>
     <?php endif; ?>
 
     <?php if ($resultado): ?>
         <h2>Resguardo de la inscripción</h2>
 
-        <p>
-            Nombre:
-            <?= htmlspecialchars($nombre, ENT_QUOTES, 'UTF-8') ?>
-        </p>
+        <p> Nombre: <?= htmlspecialchars($nombre, ENT_QUOTES, 'UTF-8') ?></p>
 
         <p>Edad: <?= $edad ?></p>
 
-        <p>
-            Entrada:
-            <?= htmlspecialchars(ucfirst($entrada), ENT_QUOTES, 'UTF-8') ?>
-        </p>
+        <p> Entrada: <?= htmlspecialchars(ucfirst($entrada), ENT_QUOTES, 'UTF-8') ?></p>
 
         <p>Precio base: <?= $precioBase ?> €</p>
 
@@ -206,10 +188,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p>No se han seleccionado talleres.</p>
         <?php endif; ?>
 
-        <p>
-            Total a pagar:
-            <strong><?= $total ?> €</strong>
-        </p>
+        <p>Total a pagar: <strong><?= $total ?> €</strong></p>
     <?php endif; ?>
 
     <h2>Formulario de inscripción</h2>
@@ -220,8 +199,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <br>
 
         <label for="edad">Edad:</label>
-        <input type="number" id="edad" name="edad"
-               min="1" max="120" step="1" required>
+        <input type="number" id="edad" name="edad" min="1" max="120" step="1" required>
         <br>
 
         <label for="entrada">Tipo de entrada:</label>
@@ -233,13 +211,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </select>
         <br>
 
-        <input type="checkbox" id="tvideojuegos"
-               name="tvideojuegos" value="si">
+        <input type="checkbox" id="tvideojuegos" name="tvideojuegos" value="si">
         <label for="tvideojuegos">Torneo de videojuegos (10 €)</label>
         <br>
 
-        <input type="checkbox" id="tcosplay"
-               name="tcosplay" value="si">
+        <input type="checkbox" id="tcosplay" name="tcosplay" value="si">
         <label for="tcosplay">Taller de cosplay (15 €)</label>
         <br>
 
