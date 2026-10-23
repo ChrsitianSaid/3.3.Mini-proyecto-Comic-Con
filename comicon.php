@@ -1,6 +1,6 @@
 
 <?php
-// Mostrar todos los errores durante el desarrollo.
+// Muestra todos los errores durante el desarrollo.
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
@@ -12,9 +12,7 @@ $resultado = false;
 $estado = "fallido";
 
 /**
- * Calcula el precio base de la entrada seleccionada.
- *
- * @param string $tipo Tipo de entrada: general, vip o menores.
+ * @param string $tipo 
  * @return int Precio base de la entrada.
  * @throws Exception Si el tipo de entrada no es válido.
  */
@@ -35,14 +33,6 @@ function calcularPrecioBase(string $tipo): int
     }
 }
 
-/**
- * Calcula el precio completo de una inscripción.
- *
- * @param string $entrada Tipo de entrada seleccionado.
- * @param array $talleresSeleccionados Talleres elegidos por el usuario.
- * @param array $preciosTalleres Precios asociados a cada taller.
- * @return array Datos económicos de la inscripción.
- */
 function procesarInscripcion(
     string $entrada,
     array $talleresSeleccionados,
@@ -173,7 +163,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ilerna Comic-Con</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
